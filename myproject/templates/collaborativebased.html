@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recommended Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<style>
+    .card:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .scrollable-table {
+        height: 260px; /* Set the height to control the scrollable area */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+</style>  
+<body>
+    <div class="container">
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+              <a class="nav-item nav-link link-body-emphasis active" href="{%url 'homepage' %}">Home</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'trending' %}">Trending</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'categories' %}">Categories</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'groupsitem' %}">Recommendation</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'recommendation' %}">Recommendation2</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'product_names' %}">Products</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'recommendation_page' %}">Recommendation3</a>
+              <a class="nav-item nav-link link-body-emphasis" href="{%url 'collaborativebased' %}">Recommendation4</a>
+            </nav>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+        <div class="image" style="text-align: center;">
+        <img src="https://img.freepik.com/premium-vector/clipboard-communication-management-service-page-business-paper-vector_3482-8973.jpg" alt="wait" width="450px">
+    </div>
+        <h2 style="text-align: center;">Write a product ID here</h2>
+    </div>
+    <div class="col-6">
+        <h2>Product Lists</h2>
+        <div class="scrollable-table" style="margin-bottom: 35px;">
+            <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">Serial</th>
+                      <th scope="col">Product ID</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for row in product_list %}
+                  <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ row }}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>  
+            </div> 
+    </div>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+    <div class="input-group mb-3 mx-2">
+        <input type="text" name="abc" class="form-control" placeholder="Enter a Product ID here"  aria-describedby="button-addon2">
+        <button class="btn btn-primary" type="submit" id="button-addon2">Click</button>
+      </div>
+    </form>
+
+
+    {% if recommendation %}
+    <div class="row" style="padding: 2px;">
+        {% for item in recommendation %}
+        <div class="col-md-3 my-10 py-10">
+            <a style="text-decoration: none;" href="https://www.amazon.com/HSI-Professional-Tourmaline-Straightener-Straightens/dp/{{ item }}" target="_blank">
+          <div class="card" style="margin-bottom: 10px;">
+            <div class="card-body">
+              <p class="card-text" style="text-align: center;">{{item}}</p>
+              <!-- Add more card contents as per your DataFrame columns -->
+            </div>
+          </div>
+            </a>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>  
+</body>
+</html>

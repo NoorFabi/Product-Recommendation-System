@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products Names</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+    .scrollable-table {
+        height: 420px; /* Set the height to control the scrollable area */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+</style>
+  <body>
+    <div class="container">
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          <a class="nav-item nav-link link-body-emphasis active" href="{%url 'homepage' %}">Home</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'trending' %}">Trending</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'categories' %}">Categories</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'groupsitem' %}">Recommendation</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'recommendation' %}">Recommendation2</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'product_names' %}">Products</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'recommendation_page' %}">Recommendation3</a>
+          <a class="nav-item nav-link link-body-emphasis" href="{%url 'collaborativebased' %}">Recommendation4</a>
+        </nav>
+      </div>
+
+      <div style="text-align: center;" class="first">
+    <img src="https://img.freepik.com/free-photo/front-view-woman-with-shopping-bag-concept_23-2148674158.jpg" alt="" width="600px">
+
+    <h1>Cluster Based Product Names</h1>
+  </div>
+    <div class="dropdown">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="margin-bottom: 10px;">
+        Select A Specific Cluster ID 
+      </button>
+        <form action="" method="post">
+          {% csrf_token %}
+          <ul class="dropdown-menu">
+            <li><input class="dropdown-item" type="submit" name="one" value="0"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="1"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="2"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="3"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="4"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="5"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="6"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="7"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="8"></li>
+            <li><input class="dropdown-item" type="submit" name="one" value="9"></li>
+          </ul>
+        </form>
+      </div>
+      <div class="scrollable-table" style="margin-bottom: 35px;">
+      <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cluster ID</th>
+                <th scope="col">Serial</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cluster_id, rows in clusters.items %}
+            {% for row in rows %}
+            <tr>
+                <td>{{ cluster_id }}</td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ row.0 }}</td>
+                <td><img src="{{ row.2 }}" alt="wait" width="150px"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>  
+      </div>  
+    </div>
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  </body>
+</html>
